@@ -13,6 +13,7 @@ public class U4A4changeThatMessage {
 		Scanner scanner = new Scanner(System.in);
 		String message = scanner.nextLine();
 		
+		
 		//checks if string is over 6 words long
 		if (countWords(message)>6) {
 			System.out.println("Not a valid message. Goodbye!");
@@ -22,14 +23,15 @@ public class U4A4changeThatMessage {
 		
 		//manipulates the phrase in different ways
 		System.out.println("\nHere are your manipulated messages: ");
-		System.out.println("\n   UPPER: " + message.toUpperCase());
-		System.out.println("\n   lower: " + message.toLowerCase());
-		System.out.println("\n   # Words: " + countWords(message) + " words");
-		System.out.println("\n   AlTeRnAtInG: " + altCase(message));
-		System.out.println("\n   # Vowels: " + countVowels(message) + " vowels");
-		System.out.println("\n   vOwEls In UppEr: " + vowelUpper(message));
-		System.out.println("\n   Reverse: " + reverseMessage(message));
-		System.out.println("\n   # 'be's and 'the's: " + countTheBes(message));
+		//printf formats the options into organized and aligned columns
+		System.out.printf("   %-20s%-1s\n","UPPER: ",message.toUpperCase());
+		System.out.printf("   %-20s%-1s\n","lower: ",message.toLowerCase());
+		System.out.printf("   %-20s%-1d%-1s\n","# Words: ",countWords(message)," words");
+		System.out.printf("   %-20s%-1s\n","AlTeRnAtInG: ",altCase(message));
+		System.out.printf("   %-20s%-1d%-1s\n","# Vowels: ",countVowels(message)," vowels");
+		System.out.printf("   %-20s%-1s\n","vOwEls In UppEr: ",vowelUpper(message));
+		System.out.printf("   %-20s%-1s\n","Reverse: ",reverseMessage(message));
+		System.out.printf("   %-20s%-1d\n","# 'be's and 'the's: ",countTheBes(message));
 		//checks for single word........checks for even length
 		if (message.indexOf(' ')==-1 && message.length()%2==0) {
 			System.out.println("\nWord Stack: \n");
@@ -53,10 +55,21 @@ public class U4A4changeThatMessage {
 	}//end welcome
 	
 	public static int countWords(String message) {
-		int wordCnt = 1;
-		for (int i = 0; i<message.length(); i++) {
+		int wordCnt = 0;
+		//removes spaces at the beginning and end
+		String messageTrim = message.trim();
+		if (messageTrim.length()==0) {
+			return 0;
+		}else {
+			wordCnt++;
+		}
+		for (int i = 0; i<messageTrim.length(); i++) {
+			//if there are multiple spaces in a row, it doesn't run the code after
+			if (i>0 && messageTrim.charAt(i-1)==' ') {
+				continue;
+			}
 			//checks for space to increase wordCnt
-			if (message.charAt(i)==' ') {
+			if (messageTrim.charAt(i)==' ') {
 				wordCnt++;
 			}
 		}
