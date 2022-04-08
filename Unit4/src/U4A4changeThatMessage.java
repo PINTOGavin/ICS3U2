@@ -77,7 +77,7 @@ public class U4A4changeThatMessage {
 	}//end countWords
 	
 	public static String altCase(String message) {
-		String newMessage = "";
+		StringBuilder newMessage = new StringBuilder(message.length());
 		for (int i = 0; i<message.length(); i++) {
 			char letter = message.charAt(i);
 			//even index - uppercase
@@ -87,9 +87,9 @@ public class U4A4changeThatMessage {
 			}else {
 				letter = Character.toLowerCase(letter);
 			}
-			newMessage += letter;
+			newMessage.append(letter);
 		}
-		return newMessage;
+		return newMessage.toString();
 	}//end altCase
 	
 	public static int countVowels(String message) {
@@ -107,7 +107,7 @@ public class U4A4changeThatMessage {
 	
 	public static String vowelUpper(String message) {
 		String messageLower = message.toLowerCase();
-		String newMessage = "";
+		StringBuilder newMessage = new StringBuilder (message.length());
 		//runs through the message
 		for (int i = 0; i<message.length(); i++) {
 			char letter = messageLower.charAt(i);
@@ -116,21 +116,21 @@ public class U4A4changeThatMessage {
 				letter = Character.toUpperCase(letter);
 			}
 			//adds char to new message
-			newMessage += letter;
+			newMessage.append(letter);
 		}
-		return newMessage;
+		return newMessage.toString();
 	}//end vowelUpper
 	
 	public static String reverseMessage(String message) {
-		String newMessage = "";
+		StringBuilder newMessage = new StringBuilder(message.length());
 		int cnt = message.length()-1;
 		//reverse while loop runs through OG message backwards
 		while (cnt>=0) {
 			//adds the char from OG message to new message
-			newMessage += message.charAt(cnt);
+			newMessage.append(message.charAt(cnt));
 			cnt--;
 		}
-		return newMessage;
+		return newMessage.toString();
 	}//end reverseMessage
 	
 	public static int countTheBes(String message) {
@@ -160,13 +160,13 @@ public class U4A4changeThatMessage {
 		int spaces = runs+2;
 		//prints each row
 		for (int i = 1; i<=runs; i++) {
-			String newMessage = "";
+			StringBuilder newMessage = new StringBuilder();
 			//prints spaces
 			for (int j = spaces; j>0; j--) {
-				newMessage += " ";
+				newMessage.append(" ");
 			}
 			//adds substring to spaces
-			newMessage += message.substring(runs-i,runs+i);
+			newMessage.append(message.substring(runs-i,runs+i));
 			System.out.println(newMessage);
 			spaces--;
 		}
