@@ -51,7 +51,7 @@ public class U5A5WhosAWinner {
 			}
 		}
 		//column size is the length of longest name OR as long as length of "Player"+3->(9)
-		col = longestName(names.clone()).length()+3;
+		col = longestName(names).length()+3;
 		if (col<9) {
 			col = 9;
 		}
@@ -65,16 +65,16 @@ public class U5A5WhosAWinner {
 
 		//stats
 		System.out.println("\n-----Statistics-----\n");
-		//.clone() is needed to avoid altering the original arrays 
-		System.out.printf("%s%s\n", "Wins: ", printWins(wins.clone()));
-		System.out.printf("%s%d\n", "Most Wins: ", maxValue(wins.clone()));
-		System.out.printf("%s%d\n", "Least Wins: ", minValue(wins.clone()));
-		System.out.printf("%s%s\n", "Sorted Wins Low to High: ", printWins(sortWinsLow(sortWinsHigh(wins.clone()))));
-		System.out.printf("%s%s\n", "Sorted Wins High to Low: ", printWins(sortWinsHigh(wins.clone())));
-		System.out.printf("%s%.1f\n", "Average: ", average(wins.clone()));
-		System.out.printf("%s%.1f\n", "Median: ", median(sortWinsHigh(wins.clone())));
-		System.out.printf("%s%s\n", "Longest Name: ", longestName(names.clone()));
-		graphWins(names.clone(),wins.clone());
+		//calls all the methods for statistics
+		System.out.printf("%s%s\n", "Wins: ", printWins(wins));
+		System.out.printf("%s%d\n", "Most Wins: ", maxValue(wins));
+		System.out.printf("%s%d\n", "Least Wins: ", minValue(wins));
+		System.out.printf("%s%s\n", "Sorted Wins Low to High: ", printWins(sortWinsLow(sortWinsHigh(wins))));
+		System.out.printf("%s%s\n", "Sorted Wins High to Low: ", printWins(sortWinsHigh(wins)));
+		System.out.printf("%s%.1f\n", "Average: ", average(wins));
+		System.out.printf("%s%.1f\n", "Median: ", median(sortWinsHigh(wins)));
+		System.out.printf("%s%s\n", "Longest Name: ", longestName(names));
+		graphWins(names,wins);
 	}//End main
 
 	public static void welcome() {
@@ -136,19 +136,24 @@ public class U5A5WhosAWinner {
 
 	//sorts the wins array from high to low
 	public static int[] sortWinsHigh(int[] wins) {
+		//new array is made to avoid altering original wins array
+		int[] newCopy = new int[wins.length];
+		for (int i = 0; i<newCopy.length; i++) {
+			newCopy[i] = wins[i];
+		}
 		int temp;
 		//repeats the nested for loop until array is sorted
-		for (int i = 0; i<wins.length-1; i++) {
+		for (int i = 0; i<newCopy.length-1; i++) {
 			//pushes smallest int to the last possible index
-			for (int j = 0; j<wins.length-1; j++) {
-				if (wins[j]<wins[j+1]) {
-					temp = wins[j];
-					wins[j] = wins[j+1];
-					wins[j+1] = temp;
+			for (int j = 0; j<newCopy.length-1; j++) {
+				if (newCopy[j]<newCopy[j+1]) {
+					temp = newCopy[j];
+					newCopy[j] = newCopy[j+1];
+					newCopy[j+1] = temp;
 				}
 			}
 		}
-		return wins;
+		return newCopy;
 	}//End sortWinsHigh
 
 	//adds the ints in the wins array and returns average
@@ -173,12 +178,17 @@ public class U5A5WhosAWinner {
 
 	//pushes name with largest length to the last index of the array and returns last index
 	public static String longestName(String[] names) {
-		for (int i = 0; i<names.length-1;i++) {
-			if (names[i].length()>names[i+1].length()) {
-				names[i+1] = names[i];
+		//new array is made to avoid altering the original names array
+		String[] newCopy = new String[names.length];
+		for (int i = 0; i<newCopy.length; i++) {
+			newCopy[i] = names[i];
+		}
+		for (int i = 0; i<newCopy.length-1;i++) {
+			if (newCopy[i].length()>newCopy[i+1].length()) {
+				newCopy[i+1] = newCopy[i];
 			}
 		}
-		return names[names.length-1];
+		return newCopy[newCopy.length-1];
 	}//End longestName
 
 	//text graph
@@ -191,12 +201,12 @@ public class U5A5WhosAWinner {
 		double dif;
 
 		//column size is the length of longest name+3 OR as long as length of "Player Name"+3->(14)
-		firstCol = longestName(names.clone()).length()+3;
+		firstCol = longestName(names).length()+3;
 		if (firstCol<14) {
 			firstCol = 14;
 		}
 		//column size is most wins+3 OR as long as length of "Games Won"+3->(12)
-		secondCol = maxValue(wins.clone())+3;
+		secondCol = maxValue(wins)+3;
 		if (secondCol<12) {
 			secondCol = 12;
 		}
