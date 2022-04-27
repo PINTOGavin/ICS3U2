@@ -1,38 +1,23 @@
+//Gavin Pinto
+//U5A5 - Who's A Winner
+
 import javax.swing.*;
 public class U5A5WhosAWinner {
 
-	//pop up menu for selecting number of players
-	public static int numPlayers(){
-		Object[] options = {1,2,3,4,5,6,7};
-		Object selectionObject = JOptionPane.showInputDialog(null, "Select One", "How many players?", JOptionPane.PLAIN_MESSAGE, null, options,options[0]);
-		return Integer.parseInt(selectionObject.toString());
-	}
-	
-	//asks user for input
-	public static String userInfo(String infoType) {
-		return JOptionPane.showInputDialog(null,infoType);
-	}
-	
-	//shows pop up for invalid input
-	public static void error() {
-		JOptionPane.showMessageDialog(null, "Not a valid input. Try again.");
-	}
-	
 	public static void main(String[] args) {
 		//initializing player amount and arrays
 		int players = numPlayers();
 		String[] names = new String[players];
 		int[] wins = new int[players];
-		
 		//declaring printf column size
 		int col;
 		String colSize;
 		//declaring invalid variable
 		boolean invalid;
-		
+
 		//calling welcome 
 		welcome();
-		
+
 		//player info section
 		System.out.println("\n\n-----Player Info-----\n");
 		//prints number of players
@@ -90,7 +75,7 @@ public class U5A5WhosAWinner {
 		System.out.printf("%s%.1f\n", "Median: ", median(sortWinsHigh(wins.clone())));
 		System.out.printf("%s%s\n", "Longest Name: ", longestName(names.clone()));
 		graphWins(names.clone(),wins.clone());
-	}
+	}//End main
 
 	public static void welcome() {
 		//draws crown ascii art
@@ -102,7 +87,24 @@ public class U5A5WhosAWinner {
 		System.out.printf("%-10s%s","","  {><><@><><}\n");
 		System.out.printf("%-10s%s","","  `\"\"\"\"\"\"\"\"\"`\n");
 		System.out.printf("%-3s%s","","Welcome to...WHO'S A WINNER!!!\n");
-	}
+	}//End welcome
+
+	//pop up menu for selecting number of players
+	public static int numPlayers(){
+		Object[] options = {1,2,3,4,5,6,7};
+		Object selectionObject = JOptionPane.showInputDialog(null, "Select One", "How many players?", JOptionPane.PLAIN_MESSAGE, null, options,options[0]);
+		return Integer.parseInt(selectionObject.toString());
+	}//End numPlayers
+
+	//asks user for input
+	public static String userInfo(String infoType) {
+		return JOptionPane.showInputDialog(null,infoType);
+	}//End userInfo
+
+	//shows pop up for invalid input
+	public static void error() {
+		JOptionPane.showMessageDialog(null, "Not a valid input. Try again.");
+	}//End error
 
 	//prints array in comma separated list
 	public static String printWins(int[] wins) {
@@ -111,17 +113,17 @@ public class U5A5WhosAWinner {
 			winList.append(wins[i] + (wins.length-i>1 ? "," : ""));
 		}
 		return winList.toString();
-	}
-	
+	}//End printWins
+
 	//returns first index of sortWinsHigh
 	public static int maxValue(int[] wins) {
 		return sortWinsHigh(wins)[0];
-	}
+	}//End maxValue
 
 	//returns first index of sortWinsLow
 	public static int minValue(int[] wins) {
 		return sortWinsLow(sortWinsHigh(wins))[0];
-	}
+	}//End minValue
 
 	//takes in sorted array from high to low and reverses it
 	public static int[] sortWinsLow(int[] wins) {
@@ -130,8 +132,8 @@ public class U5A5WhosAWinner {
 			sortedLow[wins.length-1-i] = wins[i]; 
 		}
 		return sortedLow;
-	}
-	
+	}//End sortWinsLow
+
 	//sorts the wins array from high to low
 	public static int[] sortWinsHigh(int[] wins) {
 		int temp;
@@ -147,8 +149,8 @@ public class U5A5WhosAWinner {
 			}
 		}
 		return wins;
-	}
-	
+	}//End sortWinsHigh
+
 	//adds the ints in the wins array and returns average
 	public static double average(int[] wins) {
 		double sum = 0;
@@ -156,8 +158,8 @@ public class U5A5WhosAWinner {
 			sum += wins[i];
 		}
 		return sum/wins.length;
-	}
-	
+	}//End average
+
 	//takes in sorted array
 	public static double median(int[] wins) {
 		//returns middle int if array has odd length
@@ -167,8 +169,8 @@ public class U5A5WhosAWinner {
 			//returns the average of the middle two elements if array has even length
 			return average(new int[] {wins[wins.length/2-1],wins[wins.length/2]});
 		}
-	}
-	
+	}//End median
+
 	//pushes name with largest length to the last index of the array and returns last index
 	public static String longestName(String[] names) {
 		for (int i = 0; i<names.length-1;i++) {
@@ -177,8 +179,9 @@ public class U5A5WhosAWinner {
 			}
 		}
 		return names[names.length-1];
-	}
+	}//End longestName
 
+	//text graph
 	public static void graphWins(String[] names, int[] wins) {
 		int firstCol;
 		int secondCol;
@@ -186,7 +189,7 @@ public class U5A5WhosAWinner {
 		String secondColSize;
 		String sign;
 		double dif;
-		
+
 		//column size is the length of longest name+3 OR as long as length of "Player Name"+3->(14)
 		firstCol = longestName(names.clone()).length()+3;
 		if (firstCol<14) {
@@ -200,7 +203,7 @@ public class U5A5WhosAWinner {
 		//converts to a string with the negative value so it left aligns the column
 		firstColSize = String.valueOf(-firstCol);
 		secondColSize = String.valueOf(-secondCol);
-		
+
 		System.out.println("\n-----Text Graph-----\n");
 		//printing the text labels for each graph column
 		System.out.printf("%"+firstColSize+"s%"+secondColSize+"s%s\n", "Player Name", "Games Won", "Compared to Average");
@@ -219,5 +222,6 @@ public class U5A5WhosAWinner {
 			//prints player's row stating their name, wins with "X"s, and wins compared to average
 			System.out.printf("%"+firstColSize+"s%"+secondColSize+"s%s%.1f\n", names[i], winCnt.toString(), sign, dif);
 		}
-	}
-}
+	}//End graphWins
+	
+}//End class
