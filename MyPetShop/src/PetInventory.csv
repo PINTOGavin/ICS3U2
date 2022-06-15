@@ -1,0 +1,23 @@
+TYPE,NAME,BREED,AGE,PRICE,EXTRA
+Dog,Fido,Poodle,3,800,FALSE
+Dog,Jake,Sheppard,2,900,TRUE
+Dog,Stella,Poodle,4,1100,FALSE
+Dog,Princes,Sheppard,1,799,FALSE
+Dog,Brodie,Chihauhau,3,800,FALSE
+Cat,Rosie,Siamese,3,600,TRUE
+Turtle,Sam,Eastern Musk,2,900,FALSE
+Turtle,April,Spotted,4,500,FALSE
+Cat,Fraches,Siamese,1,1050,FALSE
+Cat,Zippy,Persian,3,800,TRUE
+Cat,Patrick,Maine Coon,2,800,FALSE
+Cat,Bella,Siamese,4,600,FALSE
+Turtle,Bently,Western Painted,1,900,FALSE
+Cat,Benny,Sphynx,3,500,TRUE
+Cat,Luna,Sphynx,2,1050,FALSE
+Cat,Chase,Siamese,4,800,FALSE
+Cat,Charles,Maine Coon,1,800,TRUE
+Turtle,Zion,Eastern Musk,5,600,TRUE
+Turtle,Spotty,Spotted,3,900,TRUE
+Fish,,Anglefish,,8,FALSE
+Fish,,Maroon Clownfish,,65,TRUE
+Fish,,Goldfish,,2,FALSE
