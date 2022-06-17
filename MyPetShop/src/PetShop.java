@@ -311,7 +311,6 @@ public class PetShop {
 			//inserts the key value pair of breed + PetSummary object
 			petBreeds.put(pet.getBreed(),info);
 			//adds 1 to the quantity of the PetSummary object
-			System.out.println(pet.getBreed() + pet.getPrice());
 			info.add(pet.getPrice());
 		}
 
