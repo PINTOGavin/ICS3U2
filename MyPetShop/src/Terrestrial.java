@@ -18,7 +18,7 @@ public class Terrestrial extends Pet{
 		return age;
 	}
 	
-	public void adjustAge() {
+	public void isBirthday() {
 		age++;
 	}
 	

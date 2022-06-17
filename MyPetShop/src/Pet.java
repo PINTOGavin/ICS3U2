@@ -12,7 +12,7 @@ public class Pet {
 		this.price = price;
 		this.extra = extra;
 	}
-
+	
 	public String getType() {
 		return type;
 	}
