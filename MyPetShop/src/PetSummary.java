@@ -19,7 +19,7 @@ public class PetSummary {
 		avgCost = totalCost / qty;
 	} 
 	
-	public double getTotalCist() {
+	public double getTotalCost() {
 		return totalCost;
 	}
 	
