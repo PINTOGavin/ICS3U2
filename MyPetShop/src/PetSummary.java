@@ -1,5 +1,6 @@
 
 public class PetSummary {
+	
 	private String type;
 	private String breed;
 	private int qty;
